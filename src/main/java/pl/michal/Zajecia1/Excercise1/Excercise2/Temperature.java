@@ -6,7 +6,7 @@ package pl.michal.Zajecia1.Excercise1.Excercise2;
 public class Temperature {
     private String temperatureSyntax;
     private double temperatureValue;
-    static boolean isCorrectValue = true;
+
 
     public void setTemperatureSyntax(String temperatureSyntax) {
         this.temperatureSyntax = temperatureSyntax;
@@ -24,24 +24,23 @@ public class Temperature {
         return temperatureSyntax;
     }
 
-    public void printTemp() {
-        if (true == isCorrectValue) {
-            System.out.println(getTemperatureValue() + " " + getTemperatureSyntax().toUpperCase());
-        }
-    }
+//    public void printTemp() {
+//        if (true == isCorrectValue) {
+//            System.out.println(getTemperatureValue() + " " + getTemperatureSyntax().toUpperCase());
+//        }
+//    }
 
     public double parsingNumber(String numberSeparated) {
-        try {
-            return temperatureValue = Double.parseDouble(numberSeparated);
-        } catch (NullPointerException ex) {
-            System.out.println("test NPE//Incorrect input temperature value");
-            this.isCorrectValue = false;
-            return 0;
-        } catch (NumberFormatException ex) {
-            System.out.println("test NFE//Incorrect input temperature value");
-            this.isCorrectValue = false;
-            return 0;
+        if (null != numberSeparated) {
+            try {
+                return temperatureValue = Double.parseDouble(numberSeparated);
+            } catch (NumberFormatException ex) {
+                System.out.println("test NFE//Incorrect input temperature value");
+                return 0;
+            }
         }
+        System.out.println("test//NPE");
+        return 0;
     }
 }
 
