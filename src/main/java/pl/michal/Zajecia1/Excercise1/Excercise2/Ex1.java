@@ -63,13 +63,14 @@ public class Ex1 {
         }
 
         //parsing temp value
-        firstTemperature.parsingNumber(temporaryTemp.numberSeparated);
+        calculator.parsingNumber(temporaryTemp.numberSeparated,firstTemperature);
 
-        calculator.convertTemperatures(firstTemperature, secondTemperature);
+
+        calculator.convertTemperatures(firstTemperature, secondTemperature,temporaryTemp.numberSeparated);
 
         System.out.println("Input temp: ");
-        firstTemperature.printTemp();
+
         System.out.println("Converted temp: ");
-        secondTemperature.printTemp();
+
     }
 }

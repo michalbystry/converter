@@ -30,20 +30,8 @@ public class Temperature {
 //        }
 //    }
 
-    public double parsingNumber(String numberSeparated) {
-        if (null != numberSeparated) {
-            try {
-                return temperatureValue = Double.parseDouble(numberSeparated);
-            } catch (NumberFormatException ex) {
-                System.out.println("test NFE//Incorrect input temperature value");
-                return 0;
-            }
-        }
-        System.out.println("test//NPE");
-        return 0;
-    }
-}
 
+}
 
 
 

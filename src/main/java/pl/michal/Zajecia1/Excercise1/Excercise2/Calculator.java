@@ -22,10 +22,23 @@ public class Calculator {
             return false;
         }
     }
+    public boolean parsingNumber(String numberSeparated, Temperature temp) {
+        if (null != numberSeparated) {
+            try {
+                temp.setTemperatureValue(Double.parseDouble(numberSeparated));
+                return true;
+            } catch (NumberFormatException ex) {
+                System.out.println("test NFE//Incorrect input temperature value");
+                return false;
+            }
+        }
+        System.out.println("test//NPE");
+        return false;
+    }
 
     //converting temp if input syntax temperatures are defined in enum constants and temp value is correct
-    public void convertTemperatures(Temperature firstTemperature, Temperature secondTemperature) {
-        if (checkAvailabilityOfTemp(firstTemperature, secondTemperature) && firstTemperature.isCorrectValue) { //checking valid temp syntax and input temp value (in case of NPE/NFE)
+    public void convertTemperatures(Temperature firstTemperature, Temperature secondTemperature, String tempNumberToParse) {
+        if (checkAvailabilityOfTemp(firstTemperature, secondTemperature) && parsingNumber(tempNumberToParse,firstTemperature)) { //checking valid temp syntax and input temp value (in case of NPE/NFE)
             switch (syntax) {
                 case CF:
                     celciusConvertToFahrenheit(firstTemperature, secondTemperature);
