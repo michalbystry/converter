@@ -2,75 +2,55 @@ package pl.michal.Zajecia1.Excercise1.Excercise2;
 
 import pl.michal.kalkulator.*;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 /**
  * Created by Michał on 2014-10-09.
  */
 public class Ex1 {
 
-    private String numberSeparated;
-    String testSyntax;
+    public enum AvailableTemp {C, K, F}
+
+
+    String temp1 = "C";
+    String temp2 = "F";
+    double tempValue1;
+    double tempValue2;
+
+    public void calculateTemp(double temperatureValue, String temperatureSyntax) {
+
+        switch (AvailableTemp.valueOf(temp2)) {
+            case C:
+                calculateC(temperatureValue);
+
+                break;
+            case K:
+                calculate_KC(temperatureValue);
+                break;
+            case F:
+                calculate_FC(temperatureValue);
+                break;
+        }
+    }
+
+    public void calculate_KC(double tempValue) {
+        tempValue2=tempValue - 273.80;
+    }
+    public void calculate_FC(double tempValue) {
+        tempValue2= tempValue / 2;
+    }
+    public void calculateC(double tempValue) {
+        tempValue2= tempValue;
+    }
+
+
 
 
     public static void main(String[] args) {
-        Ex1 temporaryTemp = new Ex1();
-        Temperature firstTemperature = new Temperature();
-        Temperature secondTemperature = new Temperature();
-        Calculator calculator = new Calculator();
+Ex1 testCalc = new Ex1();
 
-        //farmatting temp values
-        DecimalFormat decimalF = new DecimalFormat("#########0.00");
-
-        NumberFormat numberFormat = NumberFormat.getInstance();
-        numberFormat.setMaximumFractionDigits(2);
-
-        System.out.println("Give temperature to convert: ");
-        Scanner input = new Scanner(System.in);
-        String inputTemporary = input.nextLine();
-
-        //receives temp syntax to convert to
-        System.out.println("Give temperature syntax to convert to: "); //ALBO WYSWIETLIC DOSTEPNE TEMP??-jak?
-        Scanner output = new Scanner(System.in);
-        String temporaryOutputTempSyntax = output.nextLine();
-
-        Pattern patternNumber = Pattern.compile("\\d+.?\\d+");
-        Matcher matcherNumber = patternNumber.matcher(inputTemporary);
-
-        //finds temperature value as a String
-        while ((matcherNumber.find())) {
-            temporaryTemp.numberSeparated = matcherNumber.group();
-        }
-
-        Pattern patternTemp = Pattern.compile("[a-zA-Z]+");
-        Matcher matcherTemp = patternTemp.matcher(inputTemporary);
-
-        //finds first temp syntax
-        while ((matcherTemp.find())) {
-            firstTemperature.setTemperatureSyntax(matcherTemp.group());
-        }
-
-        Pattern outputPatternTemp = Pattern.compile("[a-zA-Z]+");
-        Matcher outputMatcherTemp = outputPatternTemp.matcher(temporaryOutputTempSyntax);
-
-        //finds second temp syntax
-        while ((outputMatcherTemp.find())) {
-            secondTemperature.setTemperatureSyntax(outputMatcherTemp.group());
-        }
-
-        //parsing temp value
-        calculator.parsingNumber(temporaryTemp.numberSeparated,firstTemperature);
-
-
-        calculator.convertTemperatures(firstTemperature, secondTemperature,temporaryTemp.numberSeparated);
-
-        System.out.println("Input temp: ");
-
-        System.out.println("Converted temp: ");
+        testCalc.calculateTemp(100.00, testCalc.temp1 );
+        System.out.println(testCalc.tempValue2);
 
     }
 }
