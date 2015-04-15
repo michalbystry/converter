@@ -1,5 +1,6 @@
 package pl.michal.Zajecia1.Excercise1.Excercise2;
 
+import pl.michal.Lab2_1.Test;
 import pl.michal.kalkulator.*;
 
 
@@ -9,7 +10,7 @@ import pl.michal.kalkulator.*;
  */
 public class Ex1 {
 
-    public enum AvailableTemp {C, K, F}
+
 
 
     String temp1 = "C";
@@ -19,29 +20,20 @@ public class Ex1 {
 
     public void calculateTemp(double temperatureValue, String temperatureSyntax) {
 
-        switch (AvailableTemp.valueOf(temp2)) {
+        switch (Tester.AvailableTemp.valueOf(temp2)) {
             case C:
-                calculateC(temperatureValue);
-
+                Tester.AvailableTemp.C.convertFromC(temperatureValue, Ex1.this);
                 break;
             case K:
-                calculate_KC(temperatureValue);
+                Tester.AvailableTemp.K.convertToC(temperatureValue,Ex1.this);
+                Tester.AvailableTemp.K.convertFromC(Tester.AvailableTemp.F.convertToC(temperatureValue,Ex1.this),Ex1.this);
                 break;
             case F:
-                calculate_FC(temperatureValue);
+
                 break;
         }
     }
 
-    public void calculate_KC(double tempValue) {
-        tempValue2=tempValue - 273.80;
-    }
-    public void calculate_FC(double tempValue) {
-        tempValue2= tempValue / 2;
-    }
-    public void calculateC(double tempValue) {
-        tempValue2= tempValue;
-    }
 
 
 
